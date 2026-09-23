@@ -26,20 +26,27 @@ RUN pnpm run build
 # ==================== 第二阶段：Nginx 轻量运行镜像 ====================
 FROM nginx:alpine AS runner
 
-# 1. 安全优化：移除默认的 Nginx 欢迎页与配置，防止信息泄露
+# 1. 安装健康检查工具 curl (alpine 默认不含)
+RUN apk add --no-cache curl
+
+# 2. 安全优化：移除默认的 Nginx 欢迎页与配置,防止信息泄露
 RUN rm -rf /usr/share/nginx/html/* /etc/nginx/conf.d/default.conf
 
-# 2. 复制自定义针对 VitePress 优化的 Nginx 配置
+# 3. 复制自定义针对 VitePress 优化的 Nginx 配置
 COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
 
-# 3. 从构建阶段复制打包产物（若 VitePress 修改了 outDir 请对应修改 /app/dist）
+# 4. 从构建阶段复制打包产物
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# 4. 安全增强：配置静态文件的读取权限为 755
+# 5. 安全增强：配置静态文件的读取权限为 755
 RUN chmod -R 755 /usr/share/nginx/html
 
-# 5. 声明暴露 80 端口
+# 6. 声明暴露 80 端口
 EXPOSE 80
 
-# 6. 前台启动 Nginx
+# 7. 添加健康检查端点
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 --start-period=5s \
+  CMD curl -f http://localhost/ || exit 1
+
+# 8. 前台启动 Nginx
 CMD ["nginx", "-g", "daemon off;"]
