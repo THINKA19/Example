@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# 使用 pnpm 本地依赖执行暂存区校验
+exec pnpm exec lint-staged
