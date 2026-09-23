@@ -19,7 +19,10 @@
     "lint-staged": "^17.5.1"
   },
   "lint-staged": {
-    "*.{js,ts,vue,json}": "eslint --fix --no-warn-ignored"
+    "*.{js,ts,vue,json}": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "devEngines": {
     "packageManager": {

@@ -4,3 +4,6 @@ shellEmulator: true
 
 packages:
   - 'packages/**'
+
+allowBuilds:
+  esbuild: false
