@@ -1,8 +1,8 @@
 {
   "name": "my-cli",
+  "type": "module",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
   "license": "MIT",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -19,7 +19,7 @@
     "lint-staged": "^17.5.1"
   },
   "lint-staged": {
-    "*.{js,ts,vue,md,json}": "eslint --fix"
+    "*.{js,ts,vue,json}": "eslint --fix --no-warn-ignored"
   },
   "devEngines": {
     "packageManager": {

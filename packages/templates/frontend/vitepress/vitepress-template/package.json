@@ -1,0 +1,29 @@
+{
+  "name": "@dengzhibo/vitepress-template",
+  "type": "module",
+  "version": "0.0.1",
+  "private": false,
+  "description": "基于 VitePress 的开箱即用文档脚手架",
+  "author": "THINKA <your-email@example.com>",
+  "license": "MIT",
+  "keywords": [
+    "vitepress",
+    "cli",
+    "scaffold",
+    "template",
+    "documentation"
+  ],
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "dependencies": {
+    "vue": "^3.5.43"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.2",
+    "typescript": "^5.9.3",
+    "vue-tsc": "^2.2.12"
+  }
+}
