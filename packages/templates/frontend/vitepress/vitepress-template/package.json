@@ -24,6 +24,14 @@
   "devDependencies": {
     "@types/node": "^26.6.2",
     "typescript": "^5.9.3",
+    "vitepress": "2.0.0-alpha.20",
     "vue-tsc": "^2.2.12"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.22.0",
+      "onFail": "download"
+    }
   }
 }
