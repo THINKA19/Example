@@ -1,43 +1,29 @@
 {
   "name": "@dengzhibo/vitepress-template",
+  "version": "0.0.1",
+ "description": "VitePress project scaffold",
   "type": "module",
-  "version": "0.0.2",
-  "private": false,
-  "description": "基于 VitePress 的开箱即用文档脚手架",
-  "author": "THINKA <your-email@example.com>",
-  "license": "MIT",
-  "keywords": [
+   "keywords": [
     "vitepress",
-    "cli",
     "scaffold",
     "template",
-    "documentation"
+    "cli"
   ],
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+  "license": "MIT",
+  "bin": {
+    "create-vitepress-template": "./bin/cli.js"
   },
+  "files": [
+    "bin",
+    "template"
+  ],
   "scripts": {
-    "dev": "vitepress dev",
-    "build": "vitepress build",
-    "preview": "vitepress preview",
-    "preinstall": "npx only-allow pnpm",
-    "typecheck": "vue-tsc --noEmit",
-    "sidebar:generate": "tsx scripts/generate-sidebar.ts"
-  },
-  "dependencies": {
-    "vue": "^3.5.43"
-  },
-  "devDependencies": {
-    "@types/node": "^26.6.2",
-    "tsx": "^4.23.15",
-    "typescript": "^5.9.3",
-    "vitepress": "2.0.0-alpha.20",
-    "vue-tsc": "^2.2.12"
+    "test": "node ./bin/cli.js"
   },
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "^11.22.0",
+      "version": "12.5.1",
       "onFail": "download"
     }
   }
