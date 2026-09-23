@@ -31,14 +31,37 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# ==================== 5. 文档与临时文件 ====================
+# ==================== 5. 文档、测试与临时文件 ====================
 README.md
 README_*.md
+SETUP.md
 LICENSE
-*.mb
+*.md
+!src/**/*.md
+!.vitepress/**/*.md
 .temp
+coverage
+test
+tests
+__tests__
+*.spec.ts
+*.test.ts
 
 # ==================== 6. 环境变量与敏感信息文件 ====================
 # 避免将本地的敏感密钥或本地测试环境变量打包进容器
 .env*.local
 .env.development
+.env.example
+
+# ==================== 7. Docker 相关文件 (避免嵌套) ====================
+docker
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# ==================== 8. 开发工具配置 ====================
+.husky
+.editorconfig
+.eslintrc*
+.prettierrc*
+commitlint.config.js

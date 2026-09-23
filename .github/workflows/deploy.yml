@@ -11,7 +11,7 @@ on:
 jobs:
   build-and-deploy:
     name: Build Docker Image and Deploy # Job 显示名称
-    runs-on: ubuntu-latest              # 使用 GitHub 托管的 Ubuntu 最新系统环境
+    runs-on: ubuntu-latest # 使用 GitHub 托管的 Ubuntu 最新系统环境
 
     steps:
       # Step 1: 拉取源代码
@@ -37,10 +37,10 @@ jobs:
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
-          context: .                    # 构建上下文根目录（包含项目所有代码）
-          file: ./docker/Dockerfile    # 显式指定 Dockerfile 所在相对路径
-          push: true                   # 构建完成后自动推送至远程仓库
-          tags: |                      # 同时打上两个 Tag：latest 供生产消费，SHA 供追溯回归
+          context: . # 构建上下文根目录（包含项目所有代码）
+          file: ./docker/Dockerfile # 显式指定 Dockerfile 所在相对路径
+          push: true # 构建完成后自动推送至远程仓库
+          tags: | # 同时打上两个 Tag：latest 供生产消费，SHA 供追溯回归
             ${{ secrets.DOCKER_USERNAME }}/vitepress-docs:latest
             ${{ secrets.DOCKER_USERNAME }}/vitepress-docs:${{ github.sha }}
 
@@ -49,26 +49,26 @@ jobs:
       - name: Deploy to Remote Server via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.SERVER_HOST }}         # 服务器公网 IP 或域名
-          username: ${{ secrets.SERVER_USER }}     # 登录用户名 (如 root 或 ubuntu)
-          key: ${{ secrets.SERVER_SSH_KEY }}       # 存放于 GitHub Secrets 中的 SSH 私钥
+          host: ${{ secrets.SERVER_HOST }} # 服务器公网 IP 或域名
+          username: ${{ secrets.SERVER_USER }} # 登录用户名 (如 root 或 ubuntu)
+          key: ${{ secrets.SERVER_SSH_KEY }} # 存放于 GitHub Secrets 中的 SSH 私钥
           script: |
             # 1. 在远程服务器登录 Docker 仓库 (避免拉取私有镜像失败)
             echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-            
+
             # 2. 从镜像仓库拉取最新的镜像产物
             docker pull ${{ secrets.DOCKER_USERNAME }}/vitepress-docs:latest
-            
+
             # 3. 停止并移除旧容器 (加 || true 避免容器不存在时报错导致 CI 中断)
             docker stop vitepress-docs-container || true
             docker rm vitepress-docs-container || true
-            
+
             # 4. 启动新容器：开启后台运行 (-d)、自启动策略 (--restart always) 并映射端口 (8080 -> 80)
             docker run -d \
               --name vitepress-docs-container \
               --restart always \
               -p 8080:80 \
               ${{ secrets.DOCKER_USERNAME }}/vitepress-docs:latest
-            
+
             # 5. 清理悬空/废弃的旧镜像 (Dangling Images)，释放云服务器磁盘空间
             docker image prune -f

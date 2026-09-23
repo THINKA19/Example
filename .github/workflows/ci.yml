@@ -7,14 +7,14 @@ on:
   push:
     branches: [main]
   # 当针对 main 主分支创建或更新 Pull Request 时触发
-  pull_request: 
+  pull_request:
     branches: [main]
 
 # 执行任务定义 (Jobs Definition)
 jobs:
   check:
     name: Code Verification # Job 运行阶段的显示名称
-    runs-on: ubuntu-latest  # 使用 GitHub 托管的最新 Ubuntu 运行环境
+    runs-on: ubuntu-latest # 使用 GitHub 托管的最新 Ubuntu 运行环境
 
     steps:
       # Step 1: 拉取源代码
