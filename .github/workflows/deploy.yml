@@ -47,20 +47,20 @@ jobs:
           script: |
             # 登录 Docker 镜像仓库
             echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-            
+
             # 拉取最新版本的镜像
             docker pull ${{ secrets.DOCKER_USERNAME }}/vitepress-docs:latest
-            
+
             # 停止并清理旧容器
             docker stop vitepress-docs-container || true
             docker rm vitepress-docs-container || true
-            
+
             # 启动新容器（映射宿主机 8080 端口到容器内 80 端口）
             docker run -d \
               --name vitepress-docs-container \
               --restart always \
               -p 8080:80 \
               ${{ secrets.DOCKER_USERNAME }}/vitepress-docs:latest
-            
+
             # 清理废弃的无用镜像，释放服务器磁盘
             docker image prune -f
