@@ -1,3 +1,109 @@
+# 脚手架模板集合
+
+> 个人项目脚手架模板集合仓库 - 用于集中管理代码，每个包独立发布
+
+## 📦 包列表
+
+### Frontend 模板
+
+| 包名 | 版本 | 描述 | 路径 |
+|------|------|------|------|
+| [@dengzhibo/vitepress-template](https://npmjs.com/package/@dengzhibo/vitepress-template) | ![npm](https://img.shields.io/npm/v/@dengzhibo/vitepress-template) | VitePress 文档脚手架 | `packages/templates/frontend/vitepress/vitepress-template` |
+| @dengzhibo/vite-template | - | Vite 项目脚手架（开发中） | `packages/templates/frontend/vite/vite-template` |
+| @dengzhibo/webpack-template | - | Webpack 项目脚手架（开发中） | `packages/templates/frontend/webpack/webpack-template` |
+
+### Backend 模板
+
+| 包名 | 版本 | 描述 | 路径 |
+|------|------|------|------|
+| @dengzhibo/nest-template | - | Nest.js 项目脚手架（开发中） | `packages/templates/node/nest/nest-template` |
+| @dengzhibo/egg-template | - | Egg.js 项目脚手架（开发中） | `packages/templates/node/egg/egg-template` |
+| @dengzhibo/hono-template | - | Hono 项目脚手架（开发中） | `packages/templates/node/hono/hono-template` |
+
+## 🚀 使用方式
+
+每个包都是独立的 npm 包，可以直接使用：
+
+```bash
+# 创建 VitePress 项目
+npx @dengzhibo/vitepress-template
+
+# 创建 Nest.js 项目（开发中）
+npx @dengzhibo/nest-template
+```
+
+## 🏗️ 仓库结构说明
+
+这是一个**代码集中管理仓库**，但**不是 Monorepo**：
+
+- ✅ 所有模板代码集中在一个 Git 仓库
+- ✅ 每个包完全独立，互不依赖
+- ✅ 每个包独立开发、独立发布
+- ✅ 每个包有自己的版本号
+- ❌ 不使用 workspace
+- ❌ 不统一发布
+
+## 📝 开发指南
+
+### 开发某个包
+
+```bash
+# 1. 进入包目录
+cd packages/templates/frontend/vitepress/vitepress-template
+
+# 2. 安装依赖（如果需要）
+pnpm install
+
+# 3. 测试 CLI
+node ./bin/cli.js
+
+# 4. 打包测试
+pnpm pack --dry-run
+```
+
+### 发布某个包
+
+```bash
+# 1. 进入包目录
+cd packages/templates/frontend/vitepress/vitepress-template
+
+# 2. 更新版本号
+npm version patch  # 或 minor、major
+
+# 3. 发布到 npm
+npm publish --access public
+
+# 4. 提交版本变更
+git add package.json
+git commit -m "chore(vitepress): release v0.0.2"
+git push
+```
+
+### Git Commit 规范
+
+由于多个包在同一个仓库，commit 信息请标注包名：
+
+```bash
+git commit -m "feat(vitepress): 添加 Docker 支持"
+git commit -m "fix(nest): 修复环境变量问题"
+git commit -m "docs(vite): 更新 README"
+```
+
+## 🛠️ 根目录说明
+
+根目录只包含开发工具配置，不会发布到 npm：
+
+- `.husky/` - Git hooks 配置
+- `eslint.config.js` - ESLint 配置（所有包共享）
+- `commitlint.config.js` - Commit 信息校验
+- `package.json` - 仅用于开发工具依赖
+
+## 📄 License
+
+MIT
+
+---
+
 ## 格式化
 
 ### antfu/eslint-config 配置指南

@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
+import { execSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { execSync } from 'node:child_process'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -22,7 +22,7 @@ console.log('')
 if (!fs.existsSync(templateDir)) {
   console.error('❌ Template directory not found:')
   console.error(templateDir)
-  // process.exit(1)
+  process.exit(1)
 }
 
 // 防止直接覆盖当前目录已有文件
@@ -34,7 +34,7 @@ if (existingFiles.length > 0) {
   console.error(`Directory: ${targetDir}`)
   console.error('')
   console.error('Please run this command inside an empty directory.')
-  // process.exit(1)
+  process.exit(1)
 }
 
 // 复制模板
@@ -67,7 +67,8 @@ try {
 
   console.log('')
   console.log('✓ Dependencies installed')
-} catch {
+}
+catch {
   console.log('')
   console.warn('⚠️ Failed to install dependencies automatically.')
   console.warn('You can run "pnpm install" manually.')

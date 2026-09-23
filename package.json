@@ -1,8 +1,9 @@
 {
-  "name": "my-cli",
+  "name": "templates-collection",
   "type": "module",
   "version": "1.0.0",
   "private": true,
+  "description": "个人脚手架模板集合 - 仅用于集中管理代码，每个包独立发布",
   "license": "MIT",
   "scripts": {
     "lint": "eslint .",
@@ -19,8 +20,7 @@
   },
   "lint-staged": {
     "*.{js,ts,vue,json}": [
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ]
   },
   "devEngines": {
