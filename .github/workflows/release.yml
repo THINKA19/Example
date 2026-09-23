@@ -1,0 +1,58 @@
+name: Deploy VitePress Site
+
+on:
+  # 当推送到 main 分支时自动触发部署
+  push:
+    branches:
+      - main
+  # 允许在 GitHub Actions 页面手动点击运行
+  workflow_dispatch:
+
+# 设置 GITHUB_TOKEN 权限，允许向 GitHub Pages 写入部署文件
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 保证同一时间只有一个部署任务在运行，避免并发冲突
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 完整拉取 commit 历史，使 VitePress 的 gitChangelog 和上次更新时间生效
+
+      - name: 安装 pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: 设置 Node.js 环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm # 开启 pnpm 依赖缓存，极大加快构建速度
+
+      - name: 安装项目依赖
+        run: pnpm install --frozen-lockfile
+
+      - name: 构建 VitePress 文档
+        run: pnpm run docs:build # 请确保 package.json 中存在对应的 build 脚本
+
+      - name: 上传 GitHub Pages 构建产物
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/.vitepress/dist # 对应 VitePress 默认输出目录
+
+      - name: 部署到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
