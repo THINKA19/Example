@@ -20,6 +20,7 @@
     "dev": "vitepress dev",
     "build": "vitepress build",
     "preview": "vitepress preview",
+    "preinstall": "npx only-allow pnpm",
     "typecheck": "vue-tsc --noEmit",
     "sidebar:generate": "tsx scripts/generate-sidebar.ts"
   },
