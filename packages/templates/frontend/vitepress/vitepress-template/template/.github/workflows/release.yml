@@ -78,3 +78,9 @@ jobs:
       - name: 部署到 GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # 关键步骤：在执行 publish 时注入 NPM_TOKEN
+      - name: 发布到 npm
+        run: pnpm publish --no-git-checks --access public
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }} # 注入环境变量供 .npmrc 读取
