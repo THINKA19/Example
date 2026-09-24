@@ -1,5 +1,5 @@
 .env.production
-.npmrc
+cache/
 
 # ==============================================================================
 # 1. 通用产物与依赖 (Universal - 99% 的 Node.js / Vite / VitePress 项目必配)
@@ -33,7 +33,6 @@ local.log
 temp/
 explorations/
 tracing_output/
-cache/
 
 # 单元测试 & 代码覆盖率报告 (Vitest / Jest / NYC)
 coverage/
