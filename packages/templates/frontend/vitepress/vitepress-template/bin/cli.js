@@ -1,33 +1,36 @@
 #!/usr/bin/env node
 
+// 导入 Node.js 原生模块：用于执行命令行子进程、文件系统操作、路径解析及 ES Module 机制下的 URL 转换
 import { execSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+// 在 ES Module 环境下模拟获取当前脚本文件的绝对路径与所在目录 (__dirname)
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-// 当前 Scaffold 的 template 目录
+// 定义脚手架内置模板（template）目录的绝对路径
 const templateDir = path.resolve(__dirname, '../template')
 
-// 用户执行命令时所在的目录
+// 获取用户执行 CLI 命令时所在的当前工作目录
 const targetDir = process.cwd()
 
 console.log('')
 console.log('🚀 Creating VitePress project...')
 console.log('')
 
-// 检查 template 是否存在
+// 校验：确保脚手架内部的 template 资源目录确实存在
 if (!fs.existsSync(templateDir)) {
   console.error('❌ Template directory not found:')
   console.error(templateDir)
   process.exit(1)
 }
 
-// 防止直接覆盖当前目录已有文件
+// 获取目标目录下的现有文件列表，避免在非空目录下误操作覆写用户的既有代码
 const existingFiles = fs.readdirSync(targetDir)
 
+// 校验：若目标目录非空则终止脚本，提示用户在空目录下执行
 if (existingFiles.length > 0) {
   console.error('❌ Target directory is not empty.')
   console.error('')
@@ -37,12 +40,12 @@ if (existingFiles.length > 0) {
   process.exit(1)
 }
 
-// 复制模板
+// 将内置 template 目录下的所有结构与文件递归复制到用户的当前工作目录
 fs.cpSync(templateDir, targetDir, {
   recursive: true,
 })
 
-// 删除模板中的 node_modules（如果存在）
+// 清理复制过程中可能意外误带入的 node_modules 依赖目录
 const nodeModules = path.join(targetDir, 'node_modules')
 
 if (fs.existsSync(nodeModules)) {
@@ -55,11 +58,12 @@ if (fs.existsSync(nodeModules)) {
 console.log('✓ Template copied')
 console.log('')
 
-// 安装依赖
+// 自动在生成的项目目录下执行 pnpm install 安装依赖，并实时输出安装日志
 try {
   console.log('📦 Installing dependencies...')
   console.log('')
 
+  // 将标准输入输出挂载到父进程（stdio: 'inherit'），向终端实时打印 pnpm 安装日志
   execSync('pnpm install', {
     cwd: targetDir,
     stdio: 'inherit',
@@ -69,11 +73,13 @@ try {
   console.log('✓ Dependencies installed')
 }
 catch {
+  // 捕获网络异常或本地未安装 pnpm 等情况，给出降级手动提示
   console.log('')
   console.warn('⚠️ Failed to install dependencies automatically.')
   console.warn('You can run "pnpm install" manually.')
 }
 
+// 初始化完成提示与引导启动命令
 console.log('')
 console.log('🎉 Project created successfully!')
 console.log('')
