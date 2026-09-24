@@ -1,30 +1,18 @@
-// 继承 Commitlint 官方的常规规范（Conventional Commits），包含 feat, fix, docs, style, refactor 等默认类型
+/**
+ * Commitlint 提交信息规范配置
+ * 继承预设支持的 commit type 说明：
+ *  - feat     : 新增功能 (feature)
+ *  - fix      : 修复 Bug
+ *  - docs     : 仅修改文档 (documentation)
+ *  - style    : 代码格式变动（不影响逻辑，如空格、分号等）
+ *  - refactor : 代码重构（既非修复 Bug 也非新增功能的变动）
+ *  - perf     : 性能优化 (performance)
+ *  - test     : 新增或修改测试代码
+ *  - build    : 构建系统或外部依赖变更（如 npm/pnpm、vite 等配置）
+ *  - ci       : CI/CD 持续集成配置变更（如 GitHub Actions、Docker 等）
+ *  - chore    : 构建过程、辅助工具或非业务逻辑的变动
+ *  - revert   : 撤销/回退之前的 Commit
+ */
 export default {
   extends: ['@commitlint/config-conventional'],
-
-  // 可选：自定义提交规范规则（0: 禁用, 1: 警告, 2: 错误）
-  rules: {
-    // 规定 type 的可选范围（例如限定只能用这些前缀）
-    'type-enum': [
-      2,
-      'always',
-      [
-        'feat', // 新功能
-        'fix', // 修复 Bug
-        'docs', // 文档变更
-        'style', // 代码格式(不影响代码运行的变动)
-        'refactor', // 重构(既不是新增功能,也不是修改 bug 的代码变动)
-        'perf', // 性能优化
-        'test', // 增加测试
-        'build', // 构建系统或外部依赖变更
-        'chore', // 构建过程或辅助工具的变动
-        'revert', // 回退提交
-        'ci', // CI/CD 配置文件变动
-      ],
-    ],
-    // 规定 subject（提交描述）不能为空
-    'subject-empty': [2, 'never'],
-    // 规定 type（提交类型）不能为空
-    'type-empty': [2, 'never'],
-  },
 }
