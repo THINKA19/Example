@@ -1,0 +1,78 @@
+# <%= PROJECT_NAME %>
+
+<%= PROJECT_DESCRIPTION %>
+
+基于 [VitePress](https://vitepress.dev) 构建的文档站点,由 `create-my-docs` 脚手架生成。
+
+## 环境要求
+
+- Node.js 版本见 `.nvmrc`
+- 包管理器:<%= PACKAGE_MANAGER %>
+
+## 常用命令
+
+```bash
+# 安装依赖
+<%= PACKAGE_MANAGER %> install
+
+# 本地开发
+<%= PACKAGE_MANAGER %> run docs:dev
+
+# 构建产物
+<%= PACKAGE_MANAGER %> run docs:build
+
+# 本地预览构建结果
+<%= PACKAGE_MANAGER %> run docs:preview
+
+# 代码检查 / 自动修复
+<%= PACKAGE_MANAGER %> run lint
+<%= PACKAGE_MANAGER %> run lint:fix
+
+# 运行 generators 单元测试
+<%= PACKAGE_MANAGER %> run test
+
+# 构建后校验站内死链
+<%= PACKAGE_MANAGER %> run check-links
+```
+
+## 目录结构
+
+```
+docs/
+├─ .vitepress/       # VitePress 配置与自定义主题(框架层,由脚手架维护)
+│  ├─ config.ts
+│  ├─ config/        # 声明层
+│  ├─ generators/    # 计算层:根据内容目录自动生成 nav / sidebar
+│  └─ theme/
+└─ src/              # 所有 Markdown 内容(内容层,团队自由编写)
+   ├─ guide/
+   ├─ api/
+<% locales.filter(l => !l.isRoot).forEach(function(l) { -%>
+   ├─ <%= l.contentDir %>/          # <%= l.label %>
+<% }) -%>
+```
+
+## 支持的语言
+
+<% locales.forEach(function(l) { -%>
+- <%= l.label %>(<%= l.lang %>)<%= l.isRoot ? '  —— 默认语言' : '' %>
+<% }) -%>
+
+## 环境变量
+
+复制 `.env.example` 为 `.env` 并按需填写,`.env` 不会被提交到仓库。
+
+## 升级脚手架
+
+当 `create-my-docs` 发布新版本后,可以在本项目根目录运行:
+
+```bash
+npx create-my-docs upgrade
+```
+
+脚手架维护的文件(见 `scaffold.config.json` 记录的版本信息)会被安全更新,你自己编写的
+内容和业务配置(`docs/src/**`、`nav.ts` / `sidebar.ts` 里的 override)不会被覆盖。
+
+## 提交规范
+
+提交信息遵循 [Conventional Commits](https://www.conventionalcommits.org/),提交时会自动触发 lint 和格式校验。

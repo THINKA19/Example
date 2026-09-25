@@ -1,0 +1,31 @@
+import type { DefaultTheme } from 'vitepress'
+import { getRegistryEntry } from '../registry'
+
+const { lang, label, contentDir } = getRegistryEntry('<%= code %>')
+
+/** 站点级元信息:标题 / 描述 / lang 属性,不含 nav 和 sidebar */
+export const meta = {
+  lang,
+  label,
+  title: '<%= PROJECT_NAME %>',
+  description: '<%= PROJECT_DESCRIPTION %>',
+}
+
+/**
+ * 该语言的 UI 文案覆盖。themeConfig 是浅合并,
+ * 只需要覆盖会随语言变化的字段即可,其余字段自动继承顶层 themeConfig.ts。
+ *
+ * 下面文案先用英文占位,脚手架无法自动翻译,生成后请按需替换成目标语言文案。
+ */
+export const localeThemeConfig: Partial<DefaultTheme.Config> = {
+  editLink: {
+    pattern: `<%= REPO_URL %>/edit/main/docs/src/${contentDir ? `${contentDir}/` : ''}:path`,
+    text: 'Edit this page on GitHub',
+  },
+  docFooter: {
+    prev: 'Previous page',
+    next: 'Next page',
+  },
+  outlineTitle: 'On this page',
+  lastUpdatedText: 'Last updated',
+}

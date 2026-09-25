@@ -1,0 +1,11 @@
+/**
+ * 覆盖 VitePress 默认主题的 CSS 变量来自定义品牌色。
+ * 完整变量列表参考:
+ * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
+ */
+:root {
+  --vp-c-brand-1: #3451b2;
+  --vp-c-brand-2: #3a5ccc;
+  --vp-c-brand-3: #5672cd;
+  --vp-c-brand-soft: rgba(100, 108, 255, 0.14);
+}

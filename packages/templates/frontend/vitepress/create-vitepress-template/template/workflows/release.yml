@@ -1,0 +1,21 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      # 根据 Conventional Commits 自动维护一个 "Release PR",
+      # 合并该 PR 时会自动打 tag、生成 CHANGELOG、发布 GitHub Release,
+      # 进而触发 deploy.yml(监听 release: published 事件)
+      - uses: googleapis/release-please-action@v4
+        with:
+          release-type: node
+          token: ${{ secrets.GITHUB_TOKEN }}

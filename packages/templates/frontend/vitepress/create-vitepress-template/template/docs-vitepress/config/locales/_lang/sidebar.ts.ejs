@@ -1,0 +1,14 @@
+import type { DefaultTheme } from 'vitepress'
+import { generateSidebar, toChannelKey } from '../../../generators'
+import { getRegistryEntry } from '../registry'
+
+const { contentDir } = getRegistryEntry('<%= code %>')
+
+/** 自动生成规则覆盖不了的个例写在这里,例如外链、特殊分组标题 */
+const guideOverride: DefaultTheme.SidebarItem[] = []
+const apiOverride: DefaultTheme.SidebarItem[] = []
+
+export const sidebar: DefaultTheme.Sidebar = {
+  [toChannelKey('guide', contentDir)]: generateSidebar('guide', guideOverride, contentDir),
+  [toChannelKey('api', contentDir)]: generateSidebar('api', apiOverride, contentDir),
+}

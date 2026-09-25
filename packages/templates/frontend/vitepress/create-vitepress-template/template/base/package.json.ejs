@@ -1,0 +1,38 @@
+{
+  "name": "<%= PROJECT_NAME_KEBAB %>",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "docs:build:verify": "<%= PACKAGE_MANAGER %> run docs:build && <%= PACKAGE_MANAGER %> run check-links",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check-links": "tsx scripts/check-links.ts",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.0",
+    "vue": "^3.5.0",
+    "gray-matter": "^4.0.3",
+    "@antfu/eslint-config": "^3.0.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0",
+    "tsx": "^4.19.0",
+    "husky": "^9.1.0",
+    "lint-staged": "^15.2.0",
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0"
+  },
+  "lint-staged": {
+    "*.{js,ts,vue,md,json}": "eslint --fix"
+  }
+}

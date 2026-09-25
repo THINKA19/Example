@@ -1,0 +1,11 @@
+services:
+  docs:
+    build:
+      # 注意:此文件位于 docker/ 子目录,context 需指向项目根目录
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: my-vitepress-docs:latest
+    container_name: vitepress-docs
+    restart: unless-stopped
+    ports:
+      - "8080:80"

@@ -1,0 +1,12 @@
+import type { DefaultTheme } from 'vitepress'
+import { generateNav } from '../../../generators'
+import { getRegistryEntry } from '../registry'
+
+const { contentDir } = getRegistryEntry('<%= code %>')
+
+/** 只有自动生成规则覆盖不了的个例,才写在这里 */
+const override: DefaultTheme.NavItem[] = [
+  { text: 'Changelog', link: '<%= REPO_URL %>/releases' },
+]
+
+export const nav = generateNav(['guide', 'api'], override, contentDir)

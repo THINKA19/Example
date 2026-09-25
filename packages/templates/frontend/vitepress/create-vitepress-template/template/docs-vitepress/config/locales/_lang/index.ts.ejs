@@ -1,0 +1,16 @@
+import type { ResolvedLocale } from '../types'
+import { localeThemeConfig, meta } from './meta'
+import { nav } from './nav'
+import { sidebar } from './sidebar'
+
+export const <%= code %>: ResolvedLocale = {
+  lang: meta.lang,
+  label: meta.label,
+  title: meta.title,
+  description: meta.description,
+  themeConfig: {
+    ...localeThemeConfig,
+    nav,
+    sidebar,
+  },
+}
