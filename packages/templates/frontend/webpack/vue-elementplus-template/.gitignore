@@ -1,0 +1,12 @@
+node_modules
+dist
+coverage
+.turbo
+*.tsbuildinfo
+*.log
+.DS_Store
+
+# Environment files: never commit real values, always commit .env.example
+.env
+.env.*
+!.env.example

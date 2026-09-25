@@ -1,0 +1,22 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+# Single source of truth for external dependency versions.
+# Projects reference them with "catalog:". Exact versions are pinned by pnpm-lock.yaml.
+catalog:
+  "@commitlint/cli": ^19.6.0
+  "@commitlint/config-conventional": ^19.6.0
+  "@eslint/js": ^9.20.0
+  "@types/node": ^22.0.0
+  eslint: ^9.20.0
+  eslint-config-prettier: ^10.0.0
+  globals: ^16.0.0
+  husky: ^9.1.0
+  lint-staged: ^15.4.0
+  prettier: ^3.5.0
+  tsx: ^4.19.0
+  turbo: ^2.5.0
+  typescript: ^5.8.0
+  typescript-eslint: ^8.24.0
+  vitest: ^3.0.0
