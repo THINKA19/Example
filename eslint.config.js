@@ -23,9 +23,14 @@ export default antfu({
   ignores: [
     '**/README.md', // 忽略项目中的 README 说明文件
     '**/*.md', // 忽略所有的 Markdown 格式文档
-    '**/template/**', // 忽略脚手架模板生成目录（防止模板插值语法影响 Lint）
     '**/node_modules/**', // 忽略第三方依赖包目录
     '**/dist/**', // 忽略构建产物输出目录
     '**/.vitepress/**', // 忽略 VitePress 文档站点的本地配置与缓存目录
+
+    // 忽略所有模板项目的内容（它们有自己的 ESLint 配置）
+    'packages/templates/frontend/vitepress/vitepress-template/template/**',
+    'packages/templates/frontend/webpack/vue-elementplus-template/**',
+    'packages/templates/frontend/vite/**',
+    'packages/templates/node/**',
   ],
 })
