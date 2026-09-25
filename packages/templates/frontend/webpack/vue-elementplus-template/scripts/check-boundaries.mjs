@@ -6,11 +6,15 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(fileURLToPath(new URL(".", import.meta.url)), "..");
-const KINDS = ["apps", "packages"];
+const KINDS = ["apps", "packages", "tools"];
 const FORBIDDEN_NAMES = new Set(["shared", "utils", "util", "common", "helpers", "misc"]);
 const REQUIRED_SCRIPTS = {
   apps: ["dev", "build", "lint", "typecheck", "test"],
   packages: ["build", "lint", "typecheck", "test"],
+  // tools/* holds dev-time config, not runtime code: it still honours the same
+  // script contract so `pnpm -r <script>` behaves uniformly, but scripts are
+  // allowed to be no-ops (see tools/config-eslint/package.json).
+  tools: ["build", "lint", "typecheck", "test"],
 };
 const DEP_FIELDS = ["dependencies", "devDependencies", "peerDependencies", "optionalDependencies"];
 
@@ -96,6 +100,9 @@ for (const project of projects) {
       }
       if (target.kind === "apps") {
         fail(`${path}: must not depend on app "${depName}" (apps are never dependencies)`);
+      }
+      if (kind === "tools" && (target.kind === "apps" || target.kind === "packages")) {
+        fail(`${path}: tools/* must not depend on ${target.kind}/* ("${depName}")`);
       }
     }
   }

@@ -1,0 +1,23 @@
+{
+  "name": "@acme/config-eslint",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "factory.js",
+  "exports": {
+    "./factory": "./factory.js",
+    "./node": "./node.js",
+    "./vue": "./vue.js",
+    "./react": "./react.js",
+    "./uniapp": "./uniapp.js"
+  },
+  "scripts": {
+    "build": "echo \"no build step: plain ESM, consumed by path\"",
+    "lint": "echo \"no lint step: this package IS the lint config\"",
+    "typecheck": "echo \"no typecheck: plain JS config, not part of the TS project graph\"",
+    "test": "echo \"no test step: verified indirectly by consumers running eslint\""
+  },
+  "dependencies": {
+    "@antfu/eslint-config": "catalog:"
+  }
+}

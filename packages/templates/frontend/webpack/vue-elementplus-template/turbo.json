@@ -2,9 +2,8 @@
   "$schema": "https://turborepo.com/schema.json",
   "globalDependencies": [
     "tsconfig.base.json",
-    "eslint.config.js",
-    ".prettierrc",
-    "pnpm-workspace.yaml"
+    "pnpm-workspace.yaml",
+    "tools/config-eslint/**"
   ],
   "tasks": {
     "build": {

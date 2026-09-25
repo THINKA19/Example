@@ -14,23 +14,22 @@
     "test": "turbo run test",
     "verify": "turbo run lint typecheck test build",
     "verify:affected": "turbo run lint typecheck test build --affected",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
     "check:boundaries": "node scripts/check-boundaries.mjs",
     "prepare": "husky"
   },
   "devDependencies": {
+    "@acme/config-eslint": "workspace:*",
     "@commitlint/cli": "catalog:",
     "@commitlint/config-conventional": "catalog:",
-    "@eslint/js": "catalog:",
     "eslint": "catalog:",
-    "eslint-config-prettier": "catalog:",
-    "globals": "catalog:",
     "husky": "catalog:",
     "lint-staged": "catalog:",
-    "prettier": "catalog:",
     "turbo": "catalog:",
-    "typescript": "catalog:",
-    "typescript-eslint": "catalog:"
+    "typescript": "catalog:"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,mjs,cjs,vue}": [
+      "eslint --fix"
+    ]
   }
 }

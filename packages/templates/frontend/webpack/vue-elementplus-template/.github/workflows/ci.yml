@@ -39,7 +39,6 @@ jobs:
           --from ${{ github.event.pull_request.base.sha }}
           --to ${{ github.event.pull_request.head.sha }}
 
-      - run: pnpm format:check
       - run: pnpm check:boundaries
 
       - name: Verify affected projects
