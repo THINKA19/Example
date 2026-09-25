@@ -2,7 +2,7 @@
  * VitePress 项目核心配置文件 (主入口)
  * 
  * 【设计模式】：模块化解耦配置 (Modular Configuration Pattern)
- * 核心配置项已被拆分至 `./config/*` 独立模块，本文件仅作为“系统总线”进行组装与导出，
+ * 核心配置项已被拆分至 `./config/*` 独立模块，本文件仅作为"系统总线"进行组装与导出，
  * 以确保配置文件的单一职责 (SRP) 与高度可维护性。
  */
 
@@ -24,6 +24,8 @@ import { navConfig } from './config/nav'
 import { sidebarConfig } from './config/sidebar'
 // 搜索引擎配置：内置 Algolia DocSearch 或 本地 FlexSearch/MinSearch 检索参数
 import { searchConfig } from './config/search'
+// 国际化配置：多语言支持（中文、英文、越南语）
+import { localesConfig } from './config/i18n'
 
 
 // -----------------------------------------------------------------------------
@@ -34,12 +36,19 @@ import { searchConfig } from './config/search'
  * 组合结构分层：
  * - 顶层属性 (Site-level Specs): 影响站点构建、HTML 生成与 SSR 行为。
  * - themeConfig (Theme-level Specs): 作用于 VitePress 默认主题 (Default Theme) 的渲染层。
+ * - locales (i18n): 多语言配置，支持中文、英文、越南语切换
  */
 export default defineConfig({
   // 站点基础信息
   ...siteConfig,
   // SEO 与 Head 元数据
   head: seoConfig,
+  // 国际化配置
+  locales: localesConfig,
+  // URL 重写规则：将根路径 / 映射到 zh/ 目录
+  rewrites: {
+    'zh/:rest*': ':rest*'
+  },
   // 主题与 UI 层配置
   themeConfig: {
     // 主题细节配置
