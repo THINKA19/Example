@@ -1,0 +1,39 @@
+{
+  "name": "@dengzhibo/create-vue3-template",
+  "type": "module",
+  "version": "0.0.1",
+  "private": false,
+  "description": "基于 create-vue 的 Vue 3 项目模板",
+  "author": "THINKA <your-email@example.com>",
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "vue3",
+    "template",
+    "scaffold",
+    "create"
+  ],
+  "homepage": "https://github.com/dengzhibo/create-vitepress-template#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dengzhibo/create-vitepress-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dengzhibo/create-vitepress-template/issues"
+  },
+  "bin": {
+    "create-vue3-template": "./bin/index.js"
+  },
+  "files": [
+    "CHANGELOG.md",
+    "bin",
+    "template"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  }
+}
