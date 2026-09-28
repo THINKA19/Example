@@ -18,6 +18,13 @@ pnpm create @dengzhibo/vue3-template my-app
 npx @dengzhibo/create-vue3-template my-app
 ```
 
+是否安装依赖
+
+```bash
+pnpm create @dengzhibo/vue3-template my-app -- --no-install
+pnpm create @dengzhibo/vue3-template my-app -- --install
+```
+
 创建后:
 
 ```bash
