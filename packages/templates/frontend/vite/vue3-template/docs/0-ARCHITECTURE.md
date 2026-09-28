@@ -47,3 +47,6 @@ pnpm add -D unplugin-vue-components unplugin-auto-import
 pnpm dev     # 首次运行会生成 auto-imports.d.ts 和 components.d.ts，一并提交
 ```
 
+## v0.0.5 (2026-09-28) 
+
+* 基础配置

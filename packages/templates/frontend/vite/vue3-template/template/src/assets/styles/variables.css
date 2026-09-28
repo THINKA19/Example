@@ -1,0 +1,6 @@
+:root {
+  /* 在这里覆盖 Element Plus 主题色，例如： */
+  /* --el-color-primary: #1677ff; */
+
+  --app-header-height: 56px;
+}
