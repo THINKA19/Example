@@ -1,7 +1,7 @@
 {
   "name": "@dengzhibo/create-vue3-template",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "description": "基于 create-vue 的 Vue 3 项目模板",
   "author": "THINKA <your-email@example.com>",
