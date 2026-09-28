@@ -34,3 +34,16 @@ create-xxx/
 * .env 环境变量
 * .npmrc
 * .nvmrc
+
+## v0.0.3 (2026-09-28) 
+
+* element-plus 配置
+
+```bash
+pnpm add element-plus axios @element-plus/icons-vue
+pnpm add -D unplugin-vue-components unplugin-auto-import
+
+# 3. 按下面的内容新增、修改文件，然后
+pnpm dev     # 首次运行会生成 auto-imports.d.ts 和 components.d.ts，一并提交
+```
+

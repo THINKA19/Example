@@ -1,0 +1,11 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /template
+    schedule:
+      interval: weekly
+    groups:
+      vue-ecosystem:
+        patterns: ['vue', 'vue-router', 'pinia', 'vite', 'vue-tsc', '@vitejs/*', '@vue/*']
+      element-plus:
+        patterns: ['element-plus', 'unplugin-*']
