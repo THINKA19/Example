@@ -14,16 +14,14 @@ import { fileURLToPath } from 'node:url'    // 引入 URL 转换工具，用于�
 const templateDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../template')
 
 // 定义拷贝模板文件时需要跳过的文件或目录集合（Set 结构查询效率高）
-// node_modules / dist: 本地构建或依赖目录，不需要带入新项目
-// .npmignore: 防止打包脚手架 CLI 本身时内部的 .npmignore 规则影响脚手架自身发布
-const SKIP = new Set(['node_modules', 'dist', '.npmignore'])
+const SKIP = new Set(['node_modules', 'dist', '.npmignore', '.git', '.DS_Store'])
 
 /**
  * 封装统一的错误处理并退出程序
  * @param {string} message 错误提示信息
  */
 function fail(message) {
-  console.error(`\n✖ ${message}\n`) // 在控制台输出带红色/错误图标的错误提示
+  console.error(`\n✖ ${message}\n`)  // 在控制台输出带红色/错误图标的错误提示
   process.exit(1)                    // 以非 0 状态码退出进程，表示程序异常中断
 }
 
@@ -100,7 +98,7 @@ if (fs.existsSync(pkgPath)) {
 
 console.log('✔ 模板已生成')
 
-// ---------- 4. 安装依赖(可用 --no-install 跳过) ----------
+// ---------- 4. 安装依赖(可用 生成后自动 pnpm install) ----------
 let installed = false
 
 // 如果命令行传了 --install 参数，且项目生成了 package.json 文件，则尝试执行自动安装

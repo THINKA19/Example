@@ -1,15 +1,39 @@
 {
-  "name": "@dengzhibo/create-vue3-template",
+  "name": "@dengzhibo/create-monorepo-template",
   "type": "module",
-  "version": "0.0.5",
+  "version": "0.0.1",
   "private": false,
-  "description": "基于 create-vue 的 Vue 3 项目模板",
+  "description": "基于 pnpm workspace + Turborepo 的全栈 Monorepo 脚手架 (集成分包、Vue 3、React、Node.js)",
+  "main": "bin/index.js",
+  "bin": {
+    "@dengzhibo/create-monorepo-template": "./bin/index.js",
+    "create-monorepo-template": "./bin/index.js"
+  },
+  "scripts": {
+    "pack:test": "pnpm pack --dry-run",
+    "release": "pnpm publish"
+  },
+  "files": [
+    "bin",
+    "template",
+    "CHANGELOG.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
   "author": "THINKA <your-email@example.com>",
   "license": "MIT",
   "keywords": [
+    "monorepo",
+    "turborepo",
+    "pnpm-workspace",
     "vue",
     "vue3",
-    "template",
+    "react",
+    "node",
     "scaffold",
     "create"
   ],
@@ -20,18 +44,6 @@
   },
   "bugs": {
     "url": "https://github.com/dengzhibo/create-vitepress-template/issues"
-  },
-  "bin": {
-    "create-vue3-template": "./bin/index.js"
-  },
-  "files": [
-    "CHANGELOG.md",
-    "bin",
-    "template"
-  ],
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
-    "access": "public"
   },
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
