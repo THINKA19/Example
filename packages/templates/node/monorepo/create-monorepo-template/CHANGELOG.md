@@ -4,9 +4,9 @@
 >
 > 记录脚手架**CLI 工具的版本迭代历史**（可通过 `bumpp` 或 `conventional-changelog` 等自动化工具生成） 
 
-## v0.0.1 (2026-09-28) 
+## v0.0.1 (2026-10-01) 
 
-* vue 脚手架初始化
+* 纯 pnpm workspace（不用 Turborepo）
 
 
 
