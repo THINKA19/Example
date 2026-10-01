@@ -10,7 +10,6 @@
 - **依赖安装规则**：
   - 安装到根目录：`pnpm add <包名> -w`
   - 安装到指定子包：`pnpm --filter <子包名> add <包名>`
-- **内部包引用**：在 `package.json` 中使用 `"@repo/utils": "workspace:*"` 进行本地关联。
 
 ## 常用命令
 - **本地开发**：`pnpm dev`（通过 Turbo 并行启动所有开发服务）
