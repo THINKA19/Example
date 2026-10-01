@@ -20,7 +20,7 @@ bunx create-turbo@latest
 
 
 
-## v0.0.1 (2026-10-01) 
+## v0.0.2 (2026-10-01) 
 
 ### 新增
 
@@ -29,3 +29,17 @@ bunx create-turbo@latest
 * package.json  脚本命令
 * pnpm-workspace.yaml  开启 workspace
 
+## v0.0.3 (2026-10-01) 
+
+### 新增
+
+配置任务流水线
+
+* turbo.json 文件
+
+### 修改
+
+package.json 文件
+
+* 修改三个地方的 package.json 文件
+* 根目录、packages/utils 和 apps/web
