@@ -10,7 +10,7 @@
     "create-monorepo-template": "./bin/index.js"
   },
   "scripts": {
-    "pack:test": "pnpm pack --dry-run",
+    "pack": "pnpm pack --dry-run",
     "release": "pnpm publish"
   },
   "files": [
